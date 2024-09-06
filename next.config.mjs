@@ -1,15 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-    },
+    experimental: {},
     images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'yt3.googleusercontent.com',
-            },
-        ],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'yt3.googleusercontent.com',
+          pathname: '/**',  // Allow all paths from this domain
+        },
+      ],
     },
-};
-
-export default nextConfig;
+  };
+  
+  export default nextConfig;
+  
