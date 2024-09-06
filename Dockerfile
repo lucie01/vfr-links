@@ -5,6 +5,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package*.json ./
+COPY . .
 RUN npm ci
 
 FROM base AS builder
@@ -28,7 +29,7 @@ RUN adduser --system --uid 1001 nextjs
 # If 'public' is part of the source and not dynamically generated, copy it directly
 COPY ./app/public ./public
 
-COPY --from=builder ./next.config.js ./
+COPY ./next.config.js ./
 
 # Copy other necessary build artifacts and dependencies
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
