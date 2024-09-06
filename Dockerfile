@@ -4,6 +4,8 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
+# Add this line to copy next.config.js
+COPY next.config.mjs ./  
 COPY package*.json ./
 RUN npm ci
 
@@ -33,7 +35,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 # Add this line to copy next.config.js
-COPY --from=builder --chown=nextjs:nodejs ./next.config.mjs ./next.config.mjs  
+COPY --from=builder --chown=nextjs:nodejs /app/next.config.mjs ./next.config.mjs  
 
 USER nextjs
 
