@@ -28,6 +28,8 @@ RUN adduser --system --uid 1001 nextjs
 # If 'public' is part of the source and not dynamically generated, copy it directly
 COPY ./app/public ./public
 
+COPY --from=builder /app/next.config.js ./
+
 # Copy other necessary build artifacts and dependencies
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
