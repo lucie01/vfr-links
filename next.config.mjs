@@ -6,7 +6,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: '**',
+                hostname: 'yt3.googleusercontent.com',
                 port: '',
                 pathname: '**',
             },
