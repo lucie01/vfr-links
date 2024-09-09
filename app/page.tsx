@@ -7,6 +7,9 @@ import Instagram from './icons/Instagram';
 import YouTube from './icons/YouTube';
 import TikTok from './icons/TikTok';
 import LinkCard from './components/LinkCard';
+import { Data } from './interfaces/Data';
+import { Link } from './interfaces/Link';
+import { Social } from './interfaces/Social';
 import React, { useState, useEffect } from 'react';
 
 export default function HomePage() {

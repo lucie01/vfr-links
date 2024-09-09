@@ -1,4 +1,4 @@
-interface Social {
+export interface Social {
     title: string;
     href: string;
   }
