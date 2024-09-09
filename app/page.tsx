@@ -1,5 +1,4 @@
 import Image from 'next/image';
-//import data from '../data.json'
 import Twitter from './icons/Twitter';
 import GitHub from './icons/GitHub';
 import Instagram from './icons/Instagram';
