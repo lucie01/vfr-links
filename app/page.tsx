@@ -1,6 +1,5 @@
 import Image from 'next/image';
 //import data from '../data.json'
-import { redirect } from 'next/navigation';
 import Twitter from './icons/Twitter';
 import GitHub from './icons/GitHub';
 import Instagram from './icons/Instagram';
@@ -8,7 +7,6 @@ import YouTube from './icons/YouTube';
 import TikTok from './icons/TikTok';
 import LinkCard from './components/LinkCard';
 import { JSX } from 'react';
-import { log } from 'console';
 
 export default async function HomePage() {
 
