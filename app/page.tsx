@@ -19,7 +19,7 @@ export default function HomePage() {
   useEffect(() => {
     // Fetch data when the component mounts
     const fetchData = async () => {
-      const apiUrl = 'https://vfrota-995250867468.europe-west1.run.app/items/' + process.env.REACT_APP_PROJECT_ID;
+      const apiUrl = 'https://vfrota-995250867468.europe-west1.run.app/items/' + process.env.NEXT_PUBLIC_PROJECT_ID;
       try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
