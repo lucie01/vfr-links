@@ -9,7 +9,6 @@ export default function LinkCard({
     title: string;
     image?: string;
 }) {
-    console.log('LinkCard.image', image);
     return (
         <a
         href={href}

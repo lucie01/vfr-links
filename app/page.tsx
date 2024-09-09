@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import data from '../data.json'
+//import data from '../data.json'
 import { redirect } from 'next/navigation';
 import Twitter from './icons/Twitter';
 import GitHub from './icons/GitHub';
@@ -8,12 +8,29 @@ import YouTube from './icons/YouTube';
 import TikTok from './icons/TikTok';
 import LinkCard from './components/LinkCard';
 import { JSX } from 'react';
+import { log } from 'console';
 
 export default async function HomePage() {
 
+  // Replace with your API URL
+  const apiUrl = 'https://vfrota-995250867468.europe-west1.run.app/items/'+process.env.REACT_APP_PROJECT_ID;
+
+  let data;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    data = await response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw new Error('Failed to fetch data: '+ error);
+  }
+
   if (!data) {
     // not working yet https://github.com/vercel/next.js/issues/44232
-    redirect('https://linktr.ee/selenagomez');
+    throw new Error('Failed to fetch data');
   }
 
   return (
