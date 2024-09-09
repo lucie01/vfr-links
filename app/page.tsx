@@ -16,12 +16,10 @@ export default function HomePage() {
   const [data, setData] = useState<Data | null>(null); // State for fetched data
   const [error, setError] = useState<string | null>(null); // State for errors
 
-  const apiUrl =
-        'https://vfrota-995250867468.europe-west1.run.app/items/' + process.env.REACT_APP_PROJECT_ID;
-
   useEffect(() => {
     // Fetch data when the component mounts
     const fetchData = async () => {
+      const apiUrl = 'https://vfrota-995250867468.europe-west1.run.app/items/' + process.env.REACT_APP_PROJECT_ID;
       try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
