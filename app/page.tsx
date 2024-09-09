@@ -27,9 +27,14 @@ export default function HomePage() {
         }
         const result: Data = await response.json(); // Type the response as `Data`
         setData(result);
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error('Error fetching data:', error);
-        setError('Failed to fetch data: ' + error.message);
+        // Type narrowing to handle error safely
+        if (error instanceof Error) {
+          setError('Failed to fetch data: ' + error.message);
+        } else {
+          setError('An unknown error occurred.');
+        }
       }
     };
 
