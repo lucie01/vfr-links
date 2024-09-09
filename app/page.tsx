@@ -11,6 +11,7 @@ import { Data } from './interfaces/Data';
 import { Link } from './interfaces/Link';
 import { Social } from './interfaces/Social';
 import React, { useState, useEffect } from 'react';
+import Footer from './components/Footer';
 
 export default function HomePage() {
   const [data, setData] = useState<Data | null>(null); // State for fetched data
@@ -86,6 +87,7 @@ export default function HomePage() {
           </a>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
