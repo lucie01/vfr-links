@@ -1,3 +1,5 @@
+'use client';  // This directive makes the file a Client Component
+
 import Image from 'next/image';
 import Twitter from './icons/Twitter';
 import GitHub from './icons/GitHub';
@@ -5,29 +7,39 @@ import Instagram from './icons/Instagram';
 import YouTube from './icons/YouTube';
 import TikTok from './icons/TikTok';
 import LinkCard from './components/LinkCard';
-import { JSX } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default async function HomePage() {
+export default function HomePage() {
+  const [data, setData] = useState<Data | null>(null); // State for fetched data
+  const [error, setError] = useState<string | null>(null); // State for errors
 
-  // Replace with your API URL
-  const apiUrl = 'https://vfrota-995250867468.europe-west1.run.app/items/'+process.env.REACT_APP_PROJECT_ID;
+  useEffect(() => {
+    // Fetch data when the component mounts
+    const fetchData = async () => {
+      const apiUrl =
+        'https://vfrota-995250867468.europe-west1.run.app/items/' + process.env.REACT_APP_PROJECT_ID;
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const result: Data = await response.json(); // Type the response as `Data`
+        setData(result);
+      } catch (error: any) {
+        console.error('Error fetching data:', error);
+        setError('Failed to fetch data: ' + error.message);
+      }
+    };
 
-  let data;
+    fetchData();
+  }, []); // Empty dependency array means this effect runs once on mount
 
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    data = await response.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw new Error('Failed to fetch data: '+ error);
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   if (!data) {
-    // not working yet https://github.com/vercel/next.js/issues/44232
-    throw new Error('Failed to fetch data');
+    return <div>Loading...</div>;
   }
 
   return (
@@ -41,11 +53,11 @@ export default async function HomePage() {
         height={96}
       />
       <h1 className="font-bold mt-4 mb-8 text-xl text-white">{data.name}</h1>
-      {data.links.map((link: JSX.IntrinsicAttributes & { href: string; title: string; image?: string; }) => (
+      {data.links.map((link: Link) => (
         <LinkCard key={link.href} {...link} />
       ))}
       <div className="flex items-center gap-4 mt-8 text-white">
-        {data.socials.map((social: { title: string; href: string; }) => (
+        {data.socials.map((social: Social) => (
           <a
             aria-label={`${social.title} link`}
             key={social.href}
