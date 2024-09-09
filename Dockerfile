@@ -1,6 +1,6 @@
 FROM node:22-alpine AS base
 
-ENV REACT_APP_PROJECT_ID 645e019c-c36e-4a1a-ba0b-9ef94c6191c9
+ENV REACT_APP_PROJECT_ID $_REACT_APP_PROJECT_ID
 
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
